@@ -16,7 +16,7 @@
 - [ ] Persistenz (bis 25.03.2019)
 - [ ] HTTP (Termin folgt)
 - [ ] Camera (Termin folgt)
-- [ ] GPs (Termin folgt)
+- [ ] GPS (Termin folgt)
 
 ## Themen des Projektes
 - [Persistentz]()
