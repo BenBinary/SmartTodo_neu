@@ -19,7 +19,7 @@
 - [ ] GPS (Termin folgt)
 
 ## Themen des Projektes
-- [Persistentz]()
+- [Persistenz]()
 - [HTTP Networking]()
 - [Camera]()
 - [GPS]()
