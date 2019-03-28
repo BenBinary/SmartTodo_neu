@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD10E2A3224D1EBA001EC783 /* entries.json in Resources */ = {isa = PBXBuildFile; fileRef = CD10E2A2224D1EBA001EC783 /* entries.json */; };
+		CD10E2A5224D1F53001EC783 /* Entries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD10E2A4224D1F53001EC783 /* Entries.swift */; };
 		CD4C635F21C4498E007F79F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C635E21C4498E007F79F9 /* AppDelegate.swift */; };
 		CD4C636121C4498E007F79F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C636021C4498E007F79F9 /* ViewController.swift */; };
 		CD4C636421C4498E007F79F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4C636221C4498E007F79F9 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		CD10E2A2224D1EBA001EC783 /* entries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = entries.json; sourceTree = "<group>"; };
+		CD10E2A4224D1F53001EC783 /* Entries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entries.swift; sourceTree = "<group>"; };
 		CD4C635B21C4498E007F79F9 /* bk_s4_35_todo_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bk_s4_35_todo_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4C635E21C4498E007F79F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD4C636021C4498E007F79F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				CD4C636A21C4498F007F79F9 /* Info.plist */,
 				CD73D6F421C50454007AADDB /* NewPopupVC.swift */,
 				CD10E2A2224D1EBA001EC783 /* entries.json */,
+				CD10E2A4224D1F53001EC783 /* Entries.swift */,
 			);
 			path = bk_s4_35_todo_v2;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				CD4C636121C4498E007F79F9 /* ViewController.swift in Sources */,
 				CD4C638D21C454C7007F79F9 /* Todo.swift in Sources */,
+				CD10E2A5224D1F53001EC783 /* Entries.swift in Sources */,
 				CD73D6F521C50454007AADDB /* NewPopupVC.swift in Sources */,
 				CD4C635F21C4498E007F79F9 /* AppDelegate.swift in Sources */,
 			);
