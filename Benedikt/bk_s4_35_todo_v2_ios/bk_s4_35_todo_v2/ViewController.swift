@@ -16,10 +16,15 @@ class ViewController: UIViewController {
     
     
     var todoList = Todo.load() {
+        
+        //print("Property Observer wurde ausgeführt")
+        
         didSet {
           Todo.save(todoList)
         }
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,14 @@ class ViewController: UIViewController {
         // delegate: Um referenzen auf goloabl für die app verfügbare Daten einzurichgen
         // In einer selbst programmierten Klasse (meist VC) die Methode eines fremden Objekts verarbeitet werden muss. Diese Methode ist in einem Delegation-Protokoll definiert. Die eigene Klasse muss diese Protkoll implementieren um, damit der Methodenaufruf möglich ist
        // tableView.delegate = self
+        
+        
+        
+        todoList = Todo.load()
+        print("App wurde ")
+        
+        
+
         tableView.dataSource = self
         
         
@@ -104,6 +117,8 @@ class ViewController: UIViewController {
         popPC.sourceRect = sender.bounds
         popPC.delegate = self
         popPC.permittedArrowDirections = [.up, .down]
+        
+        print("blub")
         
         present(popVC, animated: true, completion: nil)
         
@@ -193,10 +208,13 @@ extension ViewController: UITableViewDataSource {
     // Verschieben durchführen
     // Aufruf, wenn tatsächlich ein Element verschoben wurde. Dazu wird das todoList-Array entsprechend synchronisiert
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
         // Speichern des Items zuerst in einer Variablen
         let item = todoList[sourceIndexPath.row]
+        
         // Löschen des Elements an einer Stelle
         todoList.remove(at: sourceIndexPath.row)
+        
         // Einfügend des Elements an einer anderen Stelle
         todoList.insert(item, at: destinationIndexPath.row)
         
