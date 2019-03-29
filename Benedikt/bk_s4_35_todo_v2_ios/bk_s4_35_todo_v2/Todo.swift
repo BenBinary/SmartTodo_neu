@@ -11,60 +11,60 @@
 import Foundation
 
 struct Todo {
-
+    
     static func save(_ data: [String]) {
         
         // String-Array wird zu einem String zusammengeführt
         
         /*
-        let str = data.joined(separator: "\n")
-        
-        // iCloud basierter Container beim dem Daten in einer KV-Map gespeichert werden
-        //NSUbiquitousKeyValueStore().set(str, forKey: "todoList")
-
-
-        print("Zu speichernde Daten \(data)")
-        
-        
-        // Füllen eines Entties-Objekt das danach dekodiert wird und in die lokale JSON-Datei abgespeichert wird
-        
-        var array : [Entry] = []
-        var s = Entry("")
-        
-        for i in 0..<data.count {
-            s = Entry(data[i])
-            array.append(s)
-        }
-
-        
-        //Enkodieren des Arrays
-        let encoder = JSONEncoder()
-        let fm = FileManager()
-        if let jsondata = try? encoder.encode(array) {
-            
-            if let jsonstr = String(data: jsondata, encoding: .utf8) {
-                
-                // Bekommen der URL für die JSON-Datei im Bundle
-                if let url = docUrl(for: "entries.json") {
-                    
-                    do {
-                     
-                        try? jsonstr.write(to: url, atomically: false, encoding: .utf8)
-                        print("Daten erfolgreich gespeichert")
-                        
-                    } catch {
-                        print(error)
-                        print("Daten nicht erfolgreich gespeichert")}
-                }
-                
-            } else {  print("Fehler beim serialisieren") }
-        } else { print("Fehler beim enkodieren")}
-        
-        */
+         let str = data.joined(separator: "\n")
+         
+         // iCloud basierter Container beim dem Daten in einer KV-Map gespeichert werden
+         //NSUbiquitousKeyValueStore().set(str, forKey: "todoList")
+         
+         
+         print("Zu speichernde Daten \(data)")
+         
+         
+         // Füllen eines Entties-Objekt das danach dekodiert wird und in die lokale JSON-Datei abgespeichert wird
+         
+         var array : [Entry] = []
+         var s = Entry("")
+         
+         for i in 0..<data.count {
+         s = Entry(data[i])
+         array.append(s)
+         }
+         
+         
+         //Enkodieren des Arrays
+         let encoder = JSONEncoder()
+         let fm = FileManager()
+         if let jsondata = try? encoder.encode(array) {
+         
+         if let jsonstr = String(data: jsondata, encoding: .utf8) {
+         
+         // Bekommen der URL für die JSON-Datei im Bundle
+         if let url = docUrl(for: "entries.json") {
+         
+         do {
+         
+         try? jsonstr.write(to: url, atomically: false, encoding: .utf8)
+         print("Daten erfolgreich gespeichert")
+         
+         } catch {
+         print(error)
+         print("Daten nicht erfolgreich gespeichert")}
+         }
+         
+         } else {  print("Fehler beim serialisieren") }
+         } else { print("Fehler beim enkodieren")}
+         
+         */
         
         
         // Alter Block um die Themen zu speichern mithilfe einer normalen Text-Datei
-         
+        /*
          if let url = docUrl(for: "todo.txt") {
          do {
          // Array in eine Zeichenkette umwandeln
@@ -74,7 +74,21 @@ struct Todo {
          print(error)
          }
          }
+         */
         
+        // Zweiter Verusch mit JSON-Speicherung im lokalen Verzeichnis
+        var encoder = JSONEncoder()
+        
+        var entries = Entries(data)
+        
+        if let url = docUrl(for: "todo.json") {
+            
+            if let jsonData = try? encoder.encode(entries) {
+                
+                try? jsonData.write(to: url)
+                
+            } else { print("Fehler beim Encodieren der Daten")}
+        }
     }
     
     
@@ -88,10 +102,10 @@ struct Todo {
         var decoder = JSONDecoder()
         
         /*
-        if let str = NSUbiquitousKeyValueStore().string(forKey: "todoList") {
-            return str.split { $0 == "\n" }.map { String($0) }
-        }
-        */
+         if let str = NSUbiquitousKeyValueStore().string(forKey: "todoList") {
+         return str.split { $0 == "\n" }.map { String($0) }
+         }
+         */
         
         // Alte Speicherung
         //  if let url = Bundle.main.url(forResource: "entries", withExtension: "json")
@@ -99,82 +113,106 @@ struct Todo {
         
         
         /*
-        if let url = docUrl(for: "entries.json") {
-            
-            
-            // Falls am Anfang keine Datei exisitiert
-            print("Existiert die Datei bereits?: \((fm.fileExists(atPath: url.absoluteString)))")
-            print(try? url.checkResourceIsReachable())
-            
-            if (!fm.fileExists(atPath: url.absoluteString)) {
-                
-                print("Datei exisitiert nicht")
-            
-                var entry_1 = Entry("Hallo")
-                var entry_2 = Entry("das")
-                var entry_3 = Entry("ist der dritte Eintrag")
-                
-                
-                var entries = Entries([entry_1, entry_2, entry_3])
-                var encoder = JSONEncoder()
-
-                if let jsondata = try? encoder.encode(entries) {
-                    
-                    if let jsonstr = String(data: jsondata, encoding: .utf8) {
-                        
-                        do {
-                            try jsonstr.write(to: url, atomically: false, encoding: .utf8)
-                            print("Initial Daten wurden erfogleich gepseichert")
-                        } catch {
-                            
-                            print("Initial Datei konnte nicht gespeichert werden")
-                        }
-                    }
-                    
-                } else { print("Die Initial-Datei existiert bereits")}
-            }
-            
-            
-            // Laden der Daten
-            if let data = try? Data(contentsOf: url) {
-                
-                if let jsonData = try? decoder.decode(Entries.self, from: data) {
-                    
-                    print(jsonData.entries)
-                    
-                    var value : [String] = []
-                    
-                    //Anfügen disere an ein neues String-Array
-                    for i in 0..<jsonData.entries.count {
-                        
-                        value.append(jsonData.entries[i].Text)
-                        
-                    }
-                    
-                    print("Diese Daten wurden eingelesen \(value)")
-                    return value
-                    
-                    
-                } else { print("Fehler beim Dekodieren ")}
-                
-            } else { print("Fehler beim Einlesen der Datem") }
-            
-        } else { print("Fehler beim Finden der Datei") }
-        */
-        
-        
-       //  Erster Versuch über eine Text-Datei
+         if let url = docUrl(for: "entries.json") {
          
+         
+         // Falls am Anfang keine Datei exisitiert
+         print("Existiert die Datei bereits?: \((fm.fileExists(atPath: url.absoluteString)))")
+         print(try? url.checkResourceIsReachable())
+         
+         if (!fm.fileExists(atPath: url.absoluteString)) {
+         
+         print("Datei exisitiert nicht")
+         
+         var entry_1 = Entry("Hallo")
+         var entry_2 = Entry("das")
+         var entry_3 = Entry("ist der dritte Eintrag")
+         
+         
+         var entries = Entries([entry_1, entry_2, entry_3])
+         var encoder = JSONEncoder()
+         
+         if let jsondata = try? encoder.encode(entries) {
+         
+         if let jsonstr = String(data: jsondata, encoding: .utf8) {
+         
+         do {
+         try jsonstr.write(to: url, atomically: false, encoding: .utf8)
+         print("Initial Daten wurden erfogleich gepseichert")
+         } catch {
+         
+         print("Initial Datei konnte nicht gespeichert werden")
+         }
+         }
+         
+         } else { print("Die Initial-Datei existiert bereits")}
+         }
+         
+         
+         // Laden der Daten
+         if let data = try? Data(contentsOf: url) {
+         
+         if let jsonData = try? decoder.decode(Entries.self, from: data) {
+         
+         print(jsonData.entries)
+         
+         var value : [String] = []
+         
+         //Anfügen disere an ein neues String-Array
+         for i in 0..<jsonData.entries.count {
+         
+         value.append(jsonData.entries[i].Text)
+         
+         }
+         
+         print("Diese Daten wurden eingelesen \(value)")
+         return value
+         
+         
+         } else { print("Fehler beim Dekodieren ")}
+         
+         } else { print("Fehler beim Einlesen der Datem") }
+         
+         } else { print("Fehler beim Finden der Datei") }
+         */
+        
+        
+        //  Erster Versuch über eine Text-Datei
+        /*
          if let url = docUrl(for: "todo.txt") {
          do {
          let str = try String(contentsOf: url, encoding: .utf8)
+         // Aufteilen des einzelnen Strings in ein String-Array
+         // durch Mapping
          return str.split { $0 == "\n" }.map { String($0) }
          } catch {
          print(error)
          }
          }
+         
+         return []
+         */
+        
+        
+        // Zweiter Versuch --> Peristente Speicherung mittels JSON
+        if let url = docUrl(for: "todo.json") {
+        
+            if let jsonData = try? Data(contentsOf: url) {
+                
+                if let jsonString = try? decoder.decode(Entries.self, from: jsonData) {
+                    
+                    return jsonString.entries
+                    
+                } else { print("Fehler beim Dekodieren") }
+                
+            } else { print("Fehler beim Einlesen der Datei") }
+            
+            
+        } else { print("Fehler bei der URL") }
         
         return []
+        
+        
     }
     
     private static func docUrl(for filename: String) -> URL? {

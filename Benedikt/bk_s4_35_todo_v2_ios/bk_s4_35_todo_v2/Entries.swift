@@ -10,10 +10,10 @@ import Foundation
 
 struct Entries: Codable {
     
-    var entries:[Entry]
+    var entries:[String]
     
     
-    init(_ data: [Entry]) {
+    init(_ data: [String]) {
       
         
         self.entries = data

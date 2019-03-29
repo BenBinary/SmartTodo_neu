@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     
     var todoList = Todo.load() {
         
-        //print("Property Observer wurde ausgeführt")
-        
         didSet {
           Todo.save(todoList)
         }
@@ -33,11 +31,6 @@ class ViewController: UIViewController {
         // delegate: Um referenzen auf goloabl für die app verfügbare Daten einzurichgen
         // In einer selbst programmierten Klasse (meist VC) die Methode eines fremden Objekts verarbeitet werden muss. Diese Methode ist in einem Delegation-Protokoll definiert. Die eigene Klasse muss diese Protkoll implementieren um, damit der Methodenaufruf möglich ist
        // tableView.delegate = self
-        
-        
-        
-        todoList = Todo.load()
-        print("App wurde ")
         
         
 
