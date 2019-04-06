@@ -10,6 +10,7 @@ import Foundation
 
 struct Entries: Codable {
     
+    
     var entries:[String]
     
     
@@ -17,6 +18,7 @@ struct Entries: Codable {
       
         
         self.entries = data
+        
     }
     
 }

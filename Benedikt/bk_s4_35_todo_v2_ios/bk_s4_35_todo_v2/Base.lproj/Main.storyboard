@@ -99,6 +99,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Va4-8c-zph"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="60"/>
                     <size key="freeformSize" width="300" height="60"/>
                     <connections>
                         <outlet property="txt" destination="eJZ-gz-kcv" id="Yqd-Ul-oAx"/>
