@@ -17,9 +17,13 @@ struct Todo {
         // Zweiter Verusch mit JSON-Speicherung im lokalen Verzeichnis
         let encoder = JSONEncoder()
         
+        // ### Speicherung der Daten auf meinem Server ###
+        
         let entries = Entries(data)
         let web = "http://87.190.44.81:3000/entries"
         
+        
+        let strData = "{\"Entries\": { \"entries\": [] }}"
         
         
         if let url = URL(string: web) {
@@ -29,15 +33,26 @@ struct Todo {
                 request.httpMethod = "POST"
                 request.httpBody = jsonData
                 
+                do {
+                    let task = try URLSession.shared.dataTask(with: request)
+                    
+                    task.resume()
+                } catch {
+                    
+                    print("Fehler beim Ausführen des Tasks")
+                }
                 
-            }
+                
+            } else { print("Daten konnten nicht enkodiert werden ")}
             
         }
         
         //if let url = docUrl(for: "todo.json")
         
         //if let url = URL(string: web)
-        
+        /*
+         ### Alte lokale Speicherung der Daten ###
+         
         if let url = docUrl(for: "todo.json") {
             
             if let jsonData = try? encoder.encode(entries) {
@@ -49,6 +64,8 @@ struct Todo {
                 
             } else { print("Fehler beim Encodieren der Daten")}
         }
+        
+        */
     }
     
     
