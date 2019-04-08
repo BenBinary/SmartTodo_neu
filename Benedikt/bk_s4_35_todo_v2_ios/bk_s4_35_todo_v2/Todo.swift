@@ -18,10 +18,32 @@ struct Todo {
         let encoder = JSONEncoder()
         
         let entries = Entries(data)
+        let web = "http://87.190.44.81:3000/entries"
+        
+        
+        
+        if let url = URL(string: web) {
+            
+            if let jsonData = try? encoder.encode(entries) {
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.httpBody = jsonData
+                
+                
+            }
+            
+        }
+        
+        //if let url = docUrl(for: "todo.json")
+        
+        //if let url = URL(string: web)
         
         if let url = docUrl(for: "todo.json") {
             
             if let jsonData = try? encoder.encode(entries) {
+                
+                
+                //jsonData.write(to: url, options: Data.WritingOptions)
                 
                 try? jsonData.write(to: url)
                 
@@ -35,7 +57,7 @@ struct Todo {
         
         print("Load-Funktion")
         
-       // var fm = FileManager.default
+        // var fm = FileManager.default
         
         let decoder = JSONDecoder()
         
@@ -44,7 +66,7 @@ struct Todo {
         let web = "http://87.190.44.81:3000/entries"
         
         if let url = URL(string: web) {
-        
+            
             if let jsonData = try? Data(contentsOf: url) {
                 
                 if let jsonString = try? decoder.decode(Entries.self, from: jsonData) {
