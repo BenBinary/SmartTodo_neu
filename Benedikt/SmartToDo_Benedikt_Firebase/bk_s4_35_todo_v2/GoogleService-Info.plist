@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>138713585902-o8oa9qpi6auuprsvaja8kip69e7jbi8q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.138713585902-o8oa9qpi6auuprsvaja8kip69e7jbi8q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDNgsZw-_np3HIo7ywB78yIcbGk1hBbrt0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>138713585902</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>bk.Smart-ToDo-Benedikt</string>
+	<key>PROJECT_ID</key>
+	<string>smarttodo-6783f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smarttodo-6783f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:138713585902:ios:6b07e6a0f5572737</string>
+	<key>DATABASE_URL</key>
+	<string>https://smarttodo-6783f.firebaseio.com</string>
+</dict>
+</plist>
